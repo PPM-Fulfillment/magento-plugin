@@ -1,0 +1,25 @@
+{
+  "name": "ppm/magento-plugin",
+  "type": "package",
+  "description": "Magento plugin to interface with PPM Fulfillment",
+  "keywords": ["ppm", "fulfillment", "magento"],
+  "homepage": "http://home.ppmfulfillment.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Andrew Ek",
+      "email": "andrewek@gmail.com",
+      "role": "Developer"
+    },
+    {
+      "name": "Ryan Stantz",
+      "email": "ryan.stants@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "init.php"
+    ]
+  }
+}
