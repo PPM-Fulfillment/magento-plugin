@@ -1,6 +1,6 @@
 {
   "name": "ppm/magento-plugin",
-  "type": "package",
+  "type": "magento2-module",
   "description": "Magento plugin to interface with PPM Fulfillment",
   "keywords": ["ppm", "fulfillment", "magento"],
   "homepage": "http://home.ppmfulfillment.com/",
@@ -13,13 +13,17 @@
     },
     {
       "name": "Ryan Stantz",
-      "email": "ryan.stants@gmail.com",
+      "email": "ryan.stantz@gmail.com",
       "role": "Developer"
     }
   ],
   "autoload": {
     "files": [
-      "init.php"
-    ]
+      "init.php",
+      "registration.php"
+    ],
+    "psr-4": {
+      "Ppm\\Magento\\": "src/"
+    }
   }
 }
