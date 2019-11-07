@@ -19,8 +19,6 @@
   ],
   "autoload": {
     "files": [
-      "init.php",
-      "registration.php"
     ],
     "psr-4": {
       "Ppm\\Magento\\": "src/"

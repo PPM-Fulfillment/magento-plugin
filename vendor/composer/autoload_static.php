@@ -6,14 +6,25 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit0c177e5a4741091144605f594f8f0238
 {
-    public static $files = array (
-        'a685ebadbc0e1076b1d34eced7981f18' => __DIR__ . '/../..' . '/init.php',
-        'bfe52ddfd2bbf8e6321adf7938e449e1' => __DIR__ . '/../..' . '/registration.php',
+    public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'Ppm\\Magento\\' => 12,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'Ppm\\Magento\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInit0c177e5a4741091144605f594f8f0238::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit0c177e5a4741091144605f594f8f0238::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }
