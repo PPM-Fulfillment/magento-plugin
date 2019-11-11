@@ -27,9 +27,24 @@ class Client {
       );
 
       curl_setopt_array($process, $curlOptions);
-      $result = curl_exec($process);
+      $resultBody = curl_exec($process);
+      $success = "true";
+
+      if(!curl_errno($process)) {
+        switch($http_code = curl_getinfo($process, CURLINFO_RESPONSE_CODE)) {
+        case 200:
+        case 201:
+          break;
+        default:
+          $success = "false";
+        }
+      }
+
       curl_close($process);
-      return $result;
+      return array(
+        "body" => $resultBody,
+        "success" => $success
+      );
     }
   }
 }

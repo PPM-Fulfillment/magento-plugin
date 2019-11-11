@@ -1,7 +1,7 @@
 <?php
   require "vendor/autoload.php";
 
-  echo "Hello, cruel world!";
+  echo "Hello, cruel world!\n\n";
 
   $params = array(
     "foo" => "bar",
@@ -15,8 +15,11 @@
 
   $result = Ppm\Client::postOrder("orders", $params);
 
-  echo $result;
+  echo $result["success"] . "\n";
+  echo $result["body"];
 
-  echo "Goodbye, cruel world!";
+  Ppm\ErrorMailer::send("andrewek@gmail.com", $params, "A failure!");
+
+  echo "\n\nGoodbye, cruel world!";
 
 ?>
