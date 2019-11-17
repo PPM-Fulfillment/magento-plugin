@@ -1,7 +1,7 @@
 {
   "name": "ppm/magento-plugin",
   "type": "magento2-module",
-  "description": "Magento plugin to interface with PPM Fulfillment",
+  "description": "Magento 2 plugin to interface with PPM Fulfillment",
   "keywords": ["ppm", "fulfillment", "magento"],
   "homepage": "http://home.ppmfulfillment.com/",
   "license": "MIT",
