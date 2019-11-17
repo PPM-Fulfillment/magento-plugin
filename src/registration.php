@@ -10,7 +10,7 @@
 
   \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'Ppm_Magento',
+    'Ppm',
     __DIR__
   );
 ?>
