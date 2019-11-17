@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Ppm\\Magento\\' => array($baseDir . '/src'),
+    'Ppm\\' => array($baseDir . '/src'),
 );

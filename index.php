@@ -1,10 +1,24 @@
 <?php
-  require_once "vendor/autoload.php";
+  require "vendor/autoload.php";
 
-  /* Testing for client */
-  echo "Doing a thing";
+  echo "Hello, cruel world!\n\n";
 
-  Ppm\Magento\Client::postOrder("some path");
+  $params = array(
+    "foo" => "bar",
+    "baz" => "qux",
+    "bar" => TRUE,
+    "qux" => array(
+      "a" => 123,
+      "b" => 456
+    )
+  );
 
-  echo "Done doing the thing";
+  $result = Ppm\Client::postOrder("orders", $params);
+
+  echo $result["success"] . "\n";
+  echo $result["body"];
+
+  Ppm\ErrorMailer::send("andrewek@gmail.com", $params, "A failure!");
+
+  echo "\n\nGoodbye, cruel world!";
 ?>

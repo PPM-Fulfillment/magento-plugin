@@ -9,12 +9,12 @@ class ComposerStaticInit0c177e5a4741091144605f594f8f0238
     public static $prefixLengthsPsr4 = array (
         'P' => 
         array (
-            'Ppm\\Magento\\' => 12,
+            'Ppm\\' => 4,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'Ppm\\Magento\\' => 
+        'Ppm\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
