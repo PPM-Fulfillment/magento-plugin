@@ -1,5 +1,5 @@
 {
-  "name": "ppm/magento-plugin",
+  "name": "ppm/ppm-magento-module",
   "type": "magento2-module",
   "description": "Magento 2 plugin to interface with PPM Fulfillment",
   "keywords": ["ppm", "fulfillment", "magento"],
