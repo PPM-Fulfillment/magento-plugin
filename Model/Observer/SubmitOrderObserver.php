@@ -1,13 +1,11 @@
 <?php
-namespace Ppm\Model\Observer;
+namespace Ppm\\FulfillmentModel\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 /**
  * Listens for order submission and also ensures it is submitted to Ppm Fulfillment
  *
  * Class SubmitOrderObserver
- *
- * @package Ppm\Model\Observer
  */
 class SubmitOrderObserver implements ObserverInterface
 {

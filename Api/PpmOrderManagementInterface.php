@@ -1,5 +1,5 @@
 <?php
-namespace Ppm\Api;
+namespace Ppm\MagentoFulfillment\Api;
 interface PpmOrderManagementInterface {
   /**
    * GET for Post api

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ppm\Setup;
+namespace Ppm\MagentoFulfilment\Setup;
 
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;

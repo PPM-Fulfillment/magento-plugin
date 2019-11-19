@@ -1,5 +1,5 @@
 <?php
-namespace Ppm\Model;
+namespace Ppm\Fulfillment\Model;
 class PpmOrderManagement {
   /**
    * {@inheritdoc}

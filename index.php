@@ -13,12 +13,12 @@
     )
   );
 
-  $result = Ppm\Client::postOrder("orders", $params);
+  $result = Ppm\MagentoFulfillment\Client::postOrder("orders", $params);
 
   echo $result["success"] . "\n";
   echo $result["body"];
 
-  Ppm\ErrorMailer::send("andrewek@gmail.com", $params, "A failure!");
+  Ppm\MagentoFulfillment\ErrorMailer::send("andrewek@gmail.com", $params, "A failure!");
 
   echo "\n\nGoodbye, cruel world!";
 ?>

@@ -1,5 +1,5 @@
 <?php
-namespace Ppm\Plugin\Block\System\Store\Edit\Form;
+namespace Ppm\MagentoFulfillment\Plugin\Block\System\Store\Edit\Form;
 class Website extends \Magento\Backend\Block\System\Store\Edit\Form\Website
 {
   /**
