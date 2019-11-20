@@ -1,5 +1,7 @@
 <?php
-namespace Ppm\MagentoFulfillment\Plugin\Block\System\Store\Edit\Form;
+
+namespace Ppm\Fulfillment\Plugin\Block\System\Store\Edit\Form;
+
 class Website extends \Magento\Backend\Block\System\Store\Edit\Form\Website
 {
   /**
@@ -14,12 +16,14 @@ class Website extends \Magento\Backend\Block\System\Store\Edit\Form\Website
   {
     $form = $subject->getForm();
     if (is_object($form)) {
+
       // From \Magento\Backend\Block\System\Store\Edit\Form\Website :
       $websiteModel = $this->_coreRegistry->registry('store_data');
       $postData = $this->_coreRegistry->registry('store_post_data');
       if ($postData) {
         $websiteModel->setData($postData['website']);
       }
+
       // Fieldset name from \Magento\Backend\Block\System\Store\Edit\Form\Website
       $fieldset = $form->getElement('website_fieldset');
       $fieldset->addField(
@@ -44,8 +48,11 @@ class Website extends \Magento\Backend\Block\System\Store\Edit\Form\Website
           'required' => false
         ]
       );
+
       $subject->setForm($form);
     }
+
     return $proceed();
   }
 }
+?>

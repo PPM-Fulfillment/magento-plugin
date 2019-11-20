@@ -1,5 +1,5 @@
 <?php
-namespace Ppm\\FulfillmentModel\Observer;
+namespace Ppm\Fulfillment\Model\Observer;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
 /**

@@ -1,5 +1,5 @@
 <?php
-namespace Ppm\MagentoFulfillment;
+namespace Ppm\Fulfillment;
 class ErrorMailer {
 
   public static function send($to, $params, $message) {

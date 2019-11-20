@@ -1,5 +1,5 @@
 <?php
-namespace Ppm\MagentoFulfillment;
+namespace Ppm\Fulfillment;
 class Client {
 
   public static $apiBaseUrl = "http://localhost:3000/";

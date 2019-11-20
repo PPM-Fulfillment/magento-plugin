@@ -1,7 +1,7 @@
 <?php
   \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    "Ppm_MagentoFulfillment",
+    "Ppm_Fulfillment",
     __DIR__
   );
 ?>

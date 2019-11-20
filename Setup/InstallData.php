@@ -1,5 +1,5 @@
 <?php
-namespace Ppm\MagentoFulfillment\Setup;
+namespace Ppm\Fulfillment\Setup;
 
 use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\InstallDataInterface;

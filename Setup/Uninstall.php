@@ -1,6 +1,6 @@
 <?php
 
-namespace Ppm\MagentoFulfillment\Setup;
+namespace Ppm\Fulfillment\Setup;
 
 class Uninstall implements \Magento\Framework\Setup\UninstallInterface {
   protected $eavSetupFactory;
