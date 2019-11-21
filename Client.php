@@ -2,10 +2,19 @@
 namespace Ppm\Fulfillment;
 class Client {
 
-  public static $apiBaseUrl = "http://localhost:3000/";
+  public static $apiLocalUrl = "http://docker.for.mac.localhost:3000/orders";
+  public static $apiBetaUrl = "https://ppm-beta.agilx.com/api/External/ThirdPartyOrders";
 
-  public static function postOrder($path = "orders", $params = array()){
+  public static function postOrder($params = array(), $ppmApiKey, $outbound){
     $process = curl_init();
+    $apiLocalUrl = "http://docker.for.mac.localhost:3000/orders";
+    $apiBetaUrl = "https://ppm-beta.agilx.com/api/External/ThirdPartyOrders";
+
+    $url = $apiBetaUrl;
+
+    if(!$outbound) {
+      $url = $apiLocalUrl;
+    }
 
     // Rework Params into a usable JSON object
     foreach($params as $k => $v) {
@@ -17,9 +26,9 @@ class Client {
 
       $curlOptions = array(
         CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL => self::$apiBaseUrl . $path,
+        CURLOPT_URL => $url,
         CURLOPT_HTTPHEADER => [
-          'Authorization: Basic '. base64_encode("foo" . ":"),
+          'Authorization: Bearer '. $ppmApiKey,
           'Content-Type: application/json'
         ],
         CURLOPT_POST => TRUE,

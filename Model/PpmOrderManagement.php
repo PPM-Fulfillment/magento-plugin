@@ -11,7 +11,7 @@ class PpmOrderManagement {
     // Check if order can be shipped or has already shipped
     if (! $order->canShip()) {
       throw new \Magento\Framework\Exception\LocalizedException(
-        __('You can\'t create an shipment.')
+        __('You can\'t create a shipment.')
       );
     }
     // Initialize the order shipment object
