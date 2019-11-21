@@ -39,7 +39,7 @@ class SubmitOrderObserver implements ObserverInterface {
       return;
     }
 
-    $orderId = strval(intval($order->getRealOrderId(), 10));
+    $orderId = $order->getRealOrderId();
     $shippingAddress = $order->getShippingAddress();
     $shipToName = $shippingAddress->getName();
     $shipToCompany = $shippingAddress->getCompany();
