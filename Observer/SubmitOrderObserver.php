@@ -19,6 +19,7 @@ class SubmitOrderObserver implements ObserverInterface {
     $order = $observer->getEvent()->getOrder();
     $ppmApiKey = $order->getStore()->getWebsite()->getPpmApiKey();
     $ppmOwnerCode = $order->getStore()->getWebsite()->getPpmOwnerCode();
+    $ppmApiUrl = $order->getStore()->getWebsite()->getPpmApiUrl();
 
     $ppmItems = array();
 
@@ -35,7 +36,7 @@ class SubmitOrderObserver implements ObserverInterface {
     $ppmItemInOrder = count($ppmItems) != 0;
 
     // Break early if we don't have PPM API keys or Owner Codes
-    if (empty($ppmApiKey) || empty($ppmOwnerCode) || !$ppmItemInOrder) {
+    if (empty($ppmApiKey) || empty($ppmOwnerCode) || !$ppmItemInOrder || empty($ppmApiUrl)) {
       return;
     }
 
@@ -69,12 +70,8 @@ class SubmitOrderObserver implements ObserverInterface {
       "lineItems" => $ppmItems,
     );
 
-    // Fire off the request to our beta server
-    $response = \Ppm\Fulfillment\Client::postOrder($params, $ppmApiKey, true);
-/**
-  \Ppm\Fulfillment\Client::postOrder($response, $ppmApiKey, false);
-  \Ppm\Fulfillment\Client::postOrder($params, $ppmApiKey, false);
- */
+    // Fire off the request to API server
+    $response = \Ppm\Fulfillment\Client::postOrder($params, $ppmApiKey, $ppmApiUrl);
   }
 }
 ?>
