@@ -6,9 +6,6 @@ use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
 
 class PpmShipmentDetail extends AbstractDb
 {
-    /**
-     * Define main table
-     */
     protected function _construct()
     {
         $this->_init('ppm_shipment_detail', 'id');

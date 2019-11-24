@@ -93,6 +93,101 @@ class InstallSchema implements InstallSchemaInterface
       ]
     );
 
+    // Get ppm_shipment_detail table
+    $tableName = $installer->getTable('ppm_shipment_detail');
+    // Check if the table already exists
+    if ($installer->getConnection()->isTableExists($tableName) != true) {
+        // Create ppm_shipment_detail table
+        $table = $installer->getConnection()
+            ->newTable($tableName)
+            ->addColumn(
+                'id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                null,
+                [
+                    'identity' => true,
+                    'unsigned' => true,
+                    'nullable' => false,
+                    'primary' => true
+                ],
+                'ID'
+            )
+            ->addColumn(
+                'ppm_merchant_sku',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                null,
+                ['nullable' => false, 'default' => ''],
+                'PPM SKU'
+            )
+            ->addColumn(
+                'serial_number',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                null,
+                ['nullable' => false, 'default' => ''],
+                'Serial Number'
+            )
+            ->addColumn(
+                'lot_number',
+                \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                null,
+                ['nullable' => false, 'default' => ''],
+                'Lot Number'
+            )
+            ->addColumn(
+                'quantity',
+                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                null,
+                ['unsigned'=>true, 'nullable'=>false, 'default' => '0'],
+                'Quantity'
+            )
+            ->addColumn(
+                'sales_shipment_item_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                null,
+                ['unsigned'=>true, 'nullable'=>true],
+                'Sales Order Item Id'
+            )
+            ->addForeignKey( // Add foreign key for table entity
+                $installer->getFkName(
+                    'ppm_shipment_detail', // New table
+                    'sales_shipment_item_id', // Column in New Table
+                    'sales_shipment_item', // Reference Table
+                    'entity_id' // Column in Reference table
+                ),
+                'sales_shipment_item_id', // New table column
+                $installer->getTable('sales_shipment_item'), // Reference Table
+                'entity_id', // Reference Table Column
+                // When the parent is deleted, delete the row with foreign key
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )
+            ->addColumn(
+                'sales_shipment_track_id',
+                \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+                null,
+                ['unsigned'=>true, 'nullable'=>false, 'default' => '0'],
+                'Sales Shipment Track Id'
+            )
+            ->addForeignKey( // Add foreign key for table entity
+                $installer->getFkName(
+                    'ppm_shipment_detail', // New table
+                    'sales_shipment_track_id', // Column in New Table
+                    'sales_shipment_track', // Reference Table
+                    'entity_id' // Column in Reference table
+                ),
+                'sales_shipment_track_id', // New table column
+                $installer->getTable('sales_shipment_track'), // Reference Table
+                'entity_id', // Reference Table Column
+                // When the parent is deleted, delete the row with foreign key
+                \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
+            )
+
+            ->setComment('Shipment Serial Number Table')
+            ->setOption('type', 'InnoDB')
+            ->setOption('charset', 'utf8');
+        $installer->getConnection()->createTable($table);
+    }
+
+
     $installer->endSetup();
   }
 }

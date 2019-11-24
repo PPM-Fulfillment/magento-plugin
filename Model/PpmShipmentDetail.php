@@ -3,14 +3,12 @@
 namespace Ppm\Fulfillment\Model;
 
 use Magento\Framework\Model\AbstractModel;
+use Ppm\Fulfillment\Model\ResourceModel\PpmShipmentDetail as ResourceModel;
 
 class PpmShipmentDetail extends AbstractModel
 {
-    /**
-     * Define resource model
-     */
     protected function _construct()
     {
-        $this->_init('Ppm\Fulfillment\Model\ResourceModel\PpmShipmentDetail');
+        $this->_init(ResourceModel::class);
     }
 }

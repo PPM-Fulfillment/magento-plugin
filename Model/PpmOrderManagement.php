@@ -1,5 +1,6 @@
 <?php
 namespace Ppm\Fulfillment\Model;
+#TODO Remove ME
 // {
 //   "OrderId": "string",
 //   "TrackingNumber": "string",
@@ -26,12 +27,14 @@ class PpmOrderManagement {
     $data = array(
       "carrier_code" => $Carrier,
       "title" => $Carrier,
-      "track_number" => $TrackingNumber,
+      "track_number" => $TrackingNumber
     );
     $track = $objectManager->create("Magento\Sales\Model\Order\Shipment\TrackFactory")->create()->addData($data);
     $shipment->addTrack($track);
 
     // Loop through order items
+    $details = [];
+    $shipmentItems = [];
     foreach ($order->getAllItems() AS $orderItem) {
       $qty = 0;
       foreach ($LineItems as $lineItem) {
@@ -44,21 +47,28 @@ class PpmOrderManagement {
           } else {
             $qty ++;
           }
-
+#TODO get commected code working and plug in lineItem quantity here
           $detailData = array(
-            "serial_number" => $lineItem['SerialNumber'],
-            "lot_number" => $lineItem['LotNumber'],
-            "quantity" => $lineItem['Quantity'],
+            'serial_number' => $lineItem['SerialNumber'],
+            'lot_number' => $lineItem['LotNumber'],
+            'quantity' => $lineItem['Quantity'],
+            'ppm_merchant_sku' => $lineItem['ProductId']
           );
-          $detail = $objectManager->create("Ppm\Fulfillment\Model\PpmShipmentDetailFactory")->create()->addData($detailData);
 
+          $model = $objectManager->create('Ppm\Fulfillment\Model\PpmShipmentDetail');
+          $model->setData($detailData);
+          $model->_sales_shipment_track = $track;
+          $details[] = $model;
+          unset($model);
         }
       }
-      $shipmentItem = $convertOrder->itemToShipmentItem($orderItem)->setQty($qty);
-      $shipment->addItem($shipmentItem);
 
-      unset($shipmentItem);
-
+      if ($qty > 0) {
+        $shipmentItem = $convertOrder->itemToShipmentItem($orderItem)->setQty($qty);
+        $shipmentItems[] = $shipmentItem;
+        $shipment->addItem($shipmentItem);
+        unset($shipmentItem);
+      }
       unset($qty);
     }
 
@@ -66,19 +76,30 @@ class PpmOrderManagement {
     $shipment->register();
     $shipment->getOrder()->setIsInProcess(true);
 
-    // try {
-    //   $shipment->save();
-    //   $shipment->getOrder()->setPpmOrderStatus("shipped");
-    //   $shipment->getOrder()->save();
-    //   // Send email
-    //   // $objectManager->create("Magento\Shipping\Model\ShipmentNotifier")
-    //   //     ->notify($shipment);
-    //   $shipment->save();
-    // } catch (\Exception $e) {
-    //   throw new \Magento\Framework\Exception\LocalizedException(
-    //     __($e->getMessage())
-    //   );
-    // }
-    return "api GET return the $OrderId ";
+    try {
+      $shipment->save();
+      foreach ($details as $detail) {
+        foreach ($shipmentItems as $itm) {
+          if ($itm->getOrderItem()->getProduct()->getPpmMerchantSku() == $detail->getPpmMerchantSku()) {
+            $id = strval($itm->getEntityId());
+            $detail->setSalesShipmentItemId($itm->getEntityId());
+          }
+        }
+        $detail->setSalesShipmentTrackId($track->getEntityId());
+        $detail->save();
+      }
+      $shipment->getOrder()->setPpmOrderStatus("shipped");
+      $shipment->getOrder()->save();
+      // Send email
+      // $objectManager->create("Magento\Shipping\Model\ShipmentNotifier")
+      //     ->notify($shipment);
+      $shipment->save();
+    } catch (\Exception $e) {
+      throw new \Magento\Framework\Exception\LocalizedException(
+        __($e->getMessage())
+      );
+    }
+    #TODO RETURN success: true, shipmentID
+    return "api GET return the $OrderId " . $id;
   }
 }
