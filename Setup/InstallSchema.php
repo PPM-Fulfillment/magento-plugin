@@ -29,13 +29,13 @@ class InstallSchema implements InstallSchemaInterface
      */
     $installer->getConnection()->addColumn(
       $installer->getTable(
-        'sales_order'
+        "sales_order"
       ),
-      'fulfilled_by_ppm',
+      "fulfilled_by_ppm",
       [
-        'type' => \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
-        'comment' => 'Fulfilled By PPM',
-        'default' => 0
+        "type" => \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+        "comment" => "Fulfilled By PPM",
+        "default" => 0
       ]
     );
     /*
@@ -43,13 +43,13 @@ class InstallSchema implements InstallSchemaInterface
      */
     $installer->getConnection()->addColumn(
       $installer->getTable(
-        'sales_order'
+        "sales_order"
       ),
-      'ppm_order_status',
+      "ppm_order_status",
       [
-        'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-        'length'=> 255,
-        'comment' => 'PPM Order Status'
+        "type" => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+        "length"=> 255,
+        "comment" => "PPM Order Status"
       ]
     );
     $installer->getConnection()->addColumn(
@@ -57,13 +57,13 @@ class InstallSchema implements InstallSchemaInterface
      * add column `ppm_order_id` to `sales_order`
      */
       $installer->getTable(
-        'sales_order'
+        "sales_order"
       ),
-      'ppm_order_id',
+      "ppm_order_id",
       [
-        'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-        'length'=> 255,
-        'comment' => 'PPM Order ID'
+        "type" => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+        "length"=> 255,
+        "comment" => "PPM Order ID"
       ]
     );
     /*
@@ -71,12 +71,12 @@ class InstallSchema implements InstallSchemaInterface
      */
     $installer->getConnection()->addColumn(
       $installer->getTable(
-        'store_website'
+        "store_website"
       ),
-      'ppm_api_key',
+      "ppm_api_key",
       [
-        'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-        'comment' => 'PPM Store API Key'
+        "type" => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+        "comment" => "PPM Store API Key"
       ]
     );
     /*
@@ -84,12 +84,12 @@ class InstallSchema implements InstallSchemaInterface
      */
     $installer->getConnection()->addColumn(
       $installer->getTable(
-        'store_website'
+        "store_website"
       ),
-      'ppm_owner_code',
+      "ppm_owner_code",
       [
-        'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-        'comment' => 'PPM Owner Code'
+        "type" => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+        "comment" => "PPM Owner Code"
       ]
     );
 

@@ -45,5 +45,6 @@ To use this plugin, you will need:
 
 + An active account with PPM Fulfillment
 + An active third-party API integration and API key
++ The PPM API URL (a default is provided)
 + Your "Owner Code" (which you'll get from PPM)
 + An active Magento store
