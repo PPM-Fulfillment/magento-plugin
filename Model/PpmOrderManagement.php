@@ -1,15 +1,6 @@
 <?php
 namespace Ppm\Fulfillment\Model;
-#TODO Remove ME
-// {
-//   "OrderId": "string",
-//   "TrackingNumber": "string",
-//   "Carrier": "string",
-//   "LineItems": [
-//     { "ProductId": "12345", Quantity: 1, "LotNumber": "12345", "SerialNumber": "ABCXYZ" },
-//     { "ProductId": "56789", Quantity: 45, "LotNumber": "678", "SerialNumber": "" },
-//   ]
-// }
+
 class PpmOrderManagement {
   /**
    * {@inheritdoc}
@@ -39,19 +30,14 @@ class PpmOrderManagement {
       $qty = 0;
       foreach ($LineItems as $lineItem) {
         if ($lineItem['ProductId'] == $orderItem->getProduct()->getPpmMerchantSku()) {
-          // $hasEmptySerial = empty($lineItem['SerialNumber']);
-          // $lineQuantity = $hasEmptySerial ? $lineItem['Quantity'] : 1;
-          // $qty += $lineQuantity;
-          if(empty($lineItem['SerialNumber'])) {
-            $qty += $lineItem['Quantity'];
-          } else {
-            $qty ++;
-          }
-#TODO get commected code working and plug in lineItem quantity here
+          $hasEmptySerial = empty($lineItem['SerialNumber']);
+          $lineQuantity = $hasEmptySerial ? $lineItem['Quantity'] : 1;
+          $qty += $lineQuantity;
+
           $detailData = array(
             'serial_number' => $lineItem['SerialNumber'],
             'lot_number' => $lineItem['LotNumber'],
-            'quantity' => $lineItem['Quantity'],
+            'quantity' => $lineQuantity,
             'ppm_merchant_sku' => $lineItem['ProductId']
           );
 
@@ -60,6 +46,8 @@ class PpmOrderManagement {
           $model->_sales_shipment_track = $track;
           $details[] = $model;
           unset($model);
+          unset($hasEmptySerial);
+          unset($lineQuantity);
         }
       }
 
@@ -81,7 +69,6 @@ class PpmOrderManagement {
       foreach ($details as $detail) {
         foreach ($shipmentItems as $itm) {
           if ($itm->getOrderItem()->getProduct()->getPpmMerchantSku() == $detail->getPpmMerchantSku()) {
-            $id = strval($itm->getEntityId());
             $detail->setSalesShipmentItemId($itm->getEntityId());
           }
         }
@@ -99,7 +86,8 @@ class PpmOrderManagement {
         __($e->getMessage())
       );
     }
-    #TODO RETURN success: true, shipmentID
-    return "api GET return the $OrderId " . $id;
+
+    $data = array('success' => true);
+    return json_encode(array('data'=> $data));
   }
 }
