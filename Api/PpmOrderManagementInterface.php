@@ -7,7 +7,7 @@ interface PpmOrderManagementInterface {
    * @param string $TrackingNumber
    * @param string $Carrier
    * @param mixed $LineItems
-   * @return string[]
+   * @return mixed[]
    */
   public function markAsShipped($OrderId, $TrackingNumber, $Carrier, $LineItems);
 }
