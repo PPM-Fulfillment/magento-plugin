@@ -87,7 +87,10 @@ class PpmOrderManagement {
       );
     }
 
-    $data = array('success' => true);
-    return json_encode(array('data'=> $data));
+    return [
+      [
+        'ShipmentId' => $shipment->getId()
+      ]
+    ];
   }
 }
