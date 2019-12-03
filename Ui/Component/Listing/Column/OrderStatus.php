@@ -8,7 +8,7 @@ use \Magento\Framework\View\Element\UiComponentFactory;
 use \Magento\Ui\Component\Listing\Columns\Column;
 use \Magento\Framework\Api\SearchCriteriaBuilder;
 
-class Status extends Column
+class OrderStatus extends Column
 {
     protected $_orderRepository;
     protected $_searchCriteria;
@@ -32,7 +32,6 @@ class Status extends Column
                   $ppm_status = 'No';
                 }
 
-                // $this->getData('name') returns the name of the column so in this case it would return export_status
                 $item[$this->getData('name')] = $ppm_status;
             }
         }
