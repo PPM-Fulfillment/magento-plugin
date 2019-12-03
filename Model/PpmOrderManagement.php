@@ -77,9 +77,7 @@ class PpmOrderManagement {
       }
       $shipment->getOrder()->setPpmOrderStatus("shipped");
       $shipment->getOrder()->save();
-      // Send email
-      // $objectManager->create("Magento\Shipping\Model\ShipmentNotifier")
-      //     ->notify($shipment);
+      $shipment->setFulfilledByPpm(true);
       $shipment->save();
     } catch (\Exception $e) {
       throw new \Magento\Framework\Exception\LocalizedException(

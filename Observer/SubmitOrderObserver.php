@@ -38,6 +38,9 @@ class SubmitOrderObserver implements ObserverInterface {
     // Break early if we don't have PPM API keys or Owner Codes
     if (empty($ppmApiKey) || empty($ppmOwnerCode) || !$ppmItemInOrder || empty($ppmApiUrl)) {
       return;
+    } else {
+      $order->setFulfilledByPpm(true);
+      $order->save();
     }
 
     $orderId = $order->getRealOrderId();
@@ -71,7 +74,7 @@ class SubmitOrderObserver implements ObserverInterface {
     );
 
     // Fire off the request to API server
-    $response = \Ppm\Fulfillment\Client::postOrder($params, $ppmApiKey, $ppmApiUrl);
+    // $response = \Ppm\Fulfillment\Client::postOrder($params, $ppmApiKey, $ppmApiUrl);
   }
 }
 ?>

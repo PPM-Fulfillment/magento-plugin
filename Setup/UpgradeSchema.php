@@ -132,7 +132,22 @@ class UpgradeSchema implements UpgradeSchemaInterface
         $setup->getConnection()->createTable($table);
       }
     }
-
+    if (version_compare($context->getVersion(), "0.0.4", "<")) {
+      /*
+       * add column `fulfilled_by_ppm` to `sales_shipment`
+       */
+      $setup->getConnection()->addColumn(
+        $setup->getTable(
+          "sales_shipment"
+        ),
+        "fulfilled_by_ppm",
+        [
+          "type" => \Magento\Framework\DB\Ddl\Table::TYPE_BOOLEAN,
+          "comment" => "Fulfilled By PPM",
+          "default" => 0
+        ]
+      );
+    }
     /* PUT SUBSEQUENT UPGRADES HERE, GOING DOWN LINEARLY WITH VERSION */
     $setup->endSetup();
   }
