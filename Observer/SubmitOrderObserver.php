@@ -74,7 +74,7 @@ class SubmitOrderObserver implements ObserverInterface {
     );
 
     // Fire off the request to API server
-    // $response = \Ppm\Fulfillment\Client::postOrder($params, $ppmApiKey, $ppmApiUrl);
+    $response = \Ppm\Fulfillment\Client::postOrder($params, $ppmApiKey, $ppmApiUrl);
   }
 }
 ?>

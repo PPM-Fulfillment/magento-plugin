@@ -131,8 +131,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
         ->setOption('charset', 'utf8');
         $setup->getConnection()->createTable($table);
       }
-    }
-    if (version_compare($context->getVersion(), "0.0.4", "<")) {
+
       /*
        * add column `fulfilled_by_ppm` to `sales_shipment`
        */
@@ -147,6 +146,14 @@ class UpgradeSchema implements UpgradeSchemaInterface
           "default" => 0
         ]
       );
+
+      /*
+      * remove column `ppm_order_id` to `sales_shipment`
+      */
+      $setup->getConnection()->dropColumn($setup->getTable('sales_order'), 'ppm_order_status');
+      $setup->getConnection()->dropColumn($setup->getTable('sales_order'), 'ppm_order_id');
+
+
     }
     /* PUT SUBSEQUENT UPGRADES HERE, GOING DOWN LINEARLY WITH VERSION */
     $setup->endSetup();
