@@ -1,0 +1,13 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="form">
+          <block class="Magento\Shipping\Block\Adminhtml\View\Items" name="shipment_items" template="Ppm_Fulfillment::order/view/info.phtml">
+              <block class="Magento\Sales\Block\Adminhtml\Items\Renderer\DefaultRenderer" name="default" as="default" template="Magento_Shipping::view/items/renderer/default.phtml"/>
+              <block class="Magento\Sales\Block\Adminhtml\Items\Column\Qty" name="column_qty" template="Magento_Sales::items/column/qty.phtml" group="column"/>
+              <block class="Magento\Sales\Block\Adminhtml\Items\Column\Name" name="column_name" template="Magento_Sales::items/column/name.phtml" group="column"/>
+              <block class="Magento\Framework\View\Element\Text\ListText" name="order_item_extra_info"/>
+              <block class="Ppm\Fulfillment\Block\ShipmentItems" name="ppm_shipment_detail"/>
+          </block>
+        </referenceContainer>
+    </body>
+</page>
