@@ -111,6 +111,8 @@ Once PPM has fulfilled a Shipment with the requested contents, an update will be
 2. Create a new Shipment Tracking Record
 2. Create one new PPM Shipment Detail record detailing quantity, lot number, and serial number for each item included in the Shipment.
 
+### Step 5: Shipment Information Review
+
 Once a Shipment record has been created, it will appear under your Shipments grid. The column `Fulfilled by PPM?` will show `Yes` if a Shipment was created by PPM Fulfillment. This column is turned on by default with installation of this extension, but can be hidden from the view via the `columns` checklist.
 
 ![](/readme-assets/06-shipments-grid.png)
