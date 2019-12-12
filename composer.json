@@ -5,7 +5,7 @@
   "keywords": ["ppm", "fulfillment", "magento"],
   "homepage": "http://home.ppmfulfillment.com/",
   "license": "MIT",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "authors": [
     {
       "name": "Andrew Ek",
@@ -25,5 +25,11 @@
     "psr-4": {
       "Ppm\\Fulfillment\\": "./"
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/PPM-Fulfillment/magento-plugin"
+    }
+  ]
 }
