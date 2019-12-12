@@ -94,3 +94,31 @@ When a customer places an order, if that order has any PPM-fulfilled products
 Product SKU), those products (and their quantities) are sent along to PPM as the
 final step of the order process. Any non-PPM-fulfilled products in an order will
 *not* be sent to PPM.
+
+### Step 3: PPM Fulfillment Request From Magento(automated)
+
+When a new order is created, this extention will iterate through the catalog products included in the order and build a list of catalog products to be fulfilled by PPM. A catalog item must have a `PPM Product ID` value and `Fulfilled by PPM` must be set to `true` or this catalog product will not be included in the request to PPM.
+
+At this point, the `Has PPM Shipments?` column on the orders grid view, should show `Yes`. Please note, this will show `Yes` even before Shipment records have been created by PPM.  This column is turned on by default with installation of this extension, but can be hidden from the view via the `columns` checklist.
+
+![](/readme-assets/05-orders-grid.png)
+
+### Step 4: PPM Fulfillment Updates Magento Admin(automated)
+
+Once PPM has fulfilled a Shipment with the requested contents, an update will be sent to Magento that does the following:
+
+1. Create a new Shipment Record
+2. Create a new Shipment Tracking Record
+2. Create one new PPM Shipment Detail record detailing quantity, lot number, and serial number for each item included in the Shipment.
+
+### Step 5: Shipment Information Review
+
+Once a Shipment record has been created, it will appear under your Shipments grid. The column `Fulfilled by PPM?` will show `Yes` if a Shipment was created by PPM Fulfillment. This column is turned on by default with installation of this extension, but can be hidden from the view via the `columns` checklist.
+
+![](/readme-assets/06-shipments-grid.png)
+
+The Shipments view page will provide information regarding `Lot Number`, `Serial Number`, and `Quantity` regarding a particular shipment.
+
+![](/readme-assets/07-shipments-view.png)
+
+
