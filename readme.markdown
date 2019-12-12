@@ -53,14 +53,14 @@ To use this plugin, you will need:
 
 First, on the side menu, select **Stores** > **All Stores**.
 
-![](/readme-assets/01-stores-menu.png)
+![](readme-assets/01-stores-menu.png)
 
 From there, you'll want to select the correct **Web Site**. Each row corresponds
 to a store in your site. If you have multiple stores, you will need to repeat
 this process for each store using a different PPM Third Party Integration API
 Key each time.
 
-![](/readme-assets/02-stores-view.png)
+![](readme-assets/02-stores-view.png)
 
 This will open up your site configuration. The three PPM-specific fields are:
 
@@ -72,7 +72,7 @@ This will open up your site configuration. The three PPM-specific fields are:
 All three of these fields must be filled in before orders can be submitted to
 PPM automatically.
 
-![](/readme-assets/03-store-config.png)
+![](readme-assets/03-store-config.png)
 
 ### Step 2: Configure Products
 
@@ -83,7 +83,7 @@ to:
 1. Indicate that the product is fulfilled by PPM
 2. Provide a PPM product ID (provided by PPM)
 
-![](/readme-assets/04-product-configuration.png)
+![](readme-assets/04-product-configuration.png)
 
 We make the assumption that you will have some products fulfilled by PPM and
 some products fulfilled through other channels (whatever those might be). Thus,
@@ -101,7 +101,7 @@ When a new order is created, this extention will iterate through the catalog pro
 
 At this point, the `Has PPM Shipments?` column on the orders grid view, should show `Yes`. Please note, this will show `Yes` even before Shipment records have been created by PPM.  This column is turned on by default with installation of this extension, but can be hidden from the view via the `columns` checklist.
 
-![](/readme-assets/05-orders-grid.png)
+![](readme-assets/05-orders-grid.png)
 
 ### Step 4: PPM Fulfillment Updates Magento Admin(automated)
 
@@ -115,10 +115,8 @@ Once PPM has fulfilled a Shipment with the requested contents, an update will be
 
 Once a Shipment record has been created, it will appear under your Shipments grid. The column `Fulfilled by PPM?` will show `Yes` if a Shipment was created by PPM Fulfillment. This column is turned on by default with installation of this extension, but can be hidden from the view via the `columns` checklist.
 
-![](/readme-assets/06-shipments-grid.png)
+![](readme-assets/06-shipments-grid.png)
 
 The Shipments view page will provide information regarding `Lot Number`, `Serial Number`, and `Quantity` regarding a particular shipment.
 
-![](/readme-assets/07-shipments-view.png)
-
-
+![](readme-assets/07-shipments-view.png)
