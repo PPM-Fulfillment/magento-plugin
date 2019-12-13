@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    '57432c455366dc01b2662bff294dcbde' => $baseDir . '/registration.php',
+    '7add15bf1efbaebd54e36e1907344e9e' => $baseDir . '/registration.php',
 );
