@@ -29,7 +29,7 @@ class PpmOrderManagement {
     foreach ($order->getAllItems() AS $orderItem) {
       $qty = 0;
       foreach ($LineItems as $lineItem) {
-        if ($lineItem['ProductId'] == $orderItem->getProduct()->getPpmMerchantSku()) {
+        if ($lineItem['ProductId'] == $orderItem->getProduct()->getPpmMerchantSku() || $lineItem['ProductId'] == $orderItem->getProduct()->getSku()) {
           $hasEmptySerial = empty($lineItem['SerialNumber']);
           $lineQuantity = $hasEmptySerial ? $lineItem['Quantity'] : 1;
           $qty += $lineQuantity;
