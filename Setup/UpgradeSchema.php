@@ -9,8 +9,8 @@ use Magento\Framework\Setup\SchemaSetupInterface;
 class UpgradeSchema implements UpgradeSchemaInterface
 {
   /**
-   * {@inheritdoc}
-   */
+  * {@inheritdoc}
+  */
   public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
   {
     $setup->startSetup();
