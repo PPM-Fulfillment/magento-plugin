@@ -10,32 +10,32 @@ use \Magento\Framework\Api\SearchCriteriaBuilder;
 
 class OrderStatus extends Column
 {
-    protected $_orderRepository;
-    protected $_searchCriteria;
+  protected $_orderRepository;
+  protected $_searchCriteria;
 
-    public function __construct(ContextInterface $context, UiComponentFactory $uiComponentFactory, OrderRepositoryInterface $orderRepository, SearchCriteriaBuilder $criteria, array $components = [], array $data = [])
-    {
-        $this->_orderRepository = $orderRepository;
-        $this->_searchCriteria  = $criteria;
-        parent::__construct($context, $uiComponentFactory, $components, $data);
-    }
+  public function __construct(ContextInterface $context, UiComponentFactory $uiComponentFactory, OrderRepositoryInterface $orderRepository, SearchCriteriaBuilder $criteria, array $components = [], array $data = [])
+  {
+    $this->_orderRepository = $orderRepository;
+    $this->_searchCriteria  = $criteria;
+    parent::__construct($context, $uiComponentFactory, $components, $data);
+  }
 
-    public function prepareDataSource(array $dataSource)
-    {
-        if (isset($dataSource['data']['items'])) {
-            foreach ($dataSource['data']['items'] as & $item) {
+  public function prepareDataSource(array $dataSource)
+  {
+    if (isset($dataSource['data']['items'])) {
+      foreach ($dataSource['data']['items'] as & $item) {
 
-                $order  = $this->_orderRepository->get($item["entity_id"]);
-                if ($order->getFulfilledByPpm() == true) {
-                  $ppm_status = 'Yes';
-                } else {
-                  $ppm_status = 'No';
-                }
-
-                $item[$this->getData('name')] = $ppm_status;
-            }
+        $order  = $this->_orderRepository->get($item["entity_id"]);
+        if ($order->getFulfilledByPpm() == true) {
+          $ppm_status = 'Yes';
+        } else {
+          $ppm_status = 'No';
         }
 
-        return $dataSource;
+        $item[$this->getData('name')] = $ppm_status;
+      }
     }
+
+    return $dataSource;
+  }
 }
