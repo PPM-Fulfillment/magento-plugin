@@ -28,7 +28,7 @@ class SubmitOrderObserver implements ObserverInterface {
         $overrideSku = $item->getProduct()->getPpmMerchantSku();
         $productId = !empty($overrideSku) ? $overrideSku : $item->getProduct()->getSku();
         $ppmItems[] = array(
-          "ProductId" => $item->getProduct()->getPpmMerchantSku(),
+          "ProductId" => $productId,
           "Description" => $item->getProduct()->getName(),
           "Quantity" => $item->getQtyToShip(),
         );
