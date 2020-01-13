@@ -68,9 +68,9 @@ class PpmOrderManagement {
       $shipment->save();
       foreach ($details as $detail) {
         foreach ($shipmentItems as $itm) {
-          $product = $itm->getOrderItem()->getProduct()
-          $matchesPpmSku = $product->getPpmMerchantSku() == $detail->getPpmMerchantSku()
-          $matchesSku = $product->getSku() == $detail->getPpmMerchantSku()
+          $product = $itm->getOrderItem()->getProduct();
+          $matchesPpmSku = $product->getPpmMerchantSku() == $detail->getPpmMerchantSku();
+          $matchesSku = $product->getSku() == $detail->getPpmMerchantSku();
           if ($matchesSku || $matchesPpmSku) {
             $detail->setSalesShipmentItemId($itm->getEntityId());
           }
