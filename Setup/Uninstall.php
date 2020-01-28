@@ -16,4 +16,3 @@ class Uninstall implements \Magento\Framework\Setup\UninstallInterface {
     $setup->endSetup();
   }
 }
-?>
