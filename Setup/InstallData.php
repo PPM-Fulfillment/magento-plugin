@@ -64,7 +64,7 @@ class InstallData implements InstallDataInterface
       [
         'group' => 'PPM Fulfillment',
         'type' => 'varchar',
-        'label' => 'PPM Product SKU',
+        'label' => 'PPM Override SKU',
         'input' => 'text',
         'global' => true,
         'visible' => true,
@@ -75,10 +75,9 @@ class InstallData implements InstallDataInterface
         'is_used_in_grid' => true,
         'is_visible_in_grid' => false,
         'is_filterable_in_grid' => false,
-        'note' => 'A valid PPM SKU must be entered here in order to send a shipment request to PPM for this product.',
+        'note' => 'Add a value here only if PPM SKU is different than the SKU for this Product. This is the SKU that will be sent to PPM in that case.',
         'apply_to' => 'simple'
       ]
     );
   }
 }
-?>
