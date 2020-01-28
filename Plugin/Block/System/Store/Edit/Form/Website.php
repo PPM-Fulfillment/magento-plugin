@@ -66,4 +66,3 @@ class Website extends \Magento\Backend\Block\System\Store\Edit\Form\Website
     return $proceed();
   }
 }
-?>

@@ -28,4 +28,3 @@ class ErrorMailer {
     mail($to, $subject, $message, $headers);
   }
 }
-?>
