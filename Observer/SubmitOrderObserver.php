@@ -32,6 +32,8 @@ class SubmitOrderObserver implements ObserverInterface {
           "Description" => $item->getProduct()->getName(),
           "Quantity" => $item->getQtyToShip(),
         );
+        unset($overrideSku);
+        unset($productId);
       }
     }
 
@@ -56,7 +58,7 @@ class SubmitOrderObserver implements ObserverInterface {
     $street1 = $shippingAddress->getStreetLine(1);
     $street2 = $shippingAddress->getStreetLine(2);
     $zipCode = $shippingAddress->getPostCode();
-    $shippingMethod = "";//$order->getShippingMethod();
+    $shippingMethod = "";
 
     $params = array(
       "ownerCode" => $ppmOwnerCode,

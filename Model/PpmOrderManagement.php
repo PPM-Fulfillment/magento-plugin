@@ -29,18 +29,18 @@ class PpmOrderManagement {
     foreach ($order->getAllItems() AS $orderItem) {
       $qty = 0;
       foreach ($LineItems as $lineItem) {
-        if ($lineItem['ProductId'] == $orderItem->getProduct()->getPpmMerchantSku() || $lineItem['ProductId'] == $orderItem->getProduct()->getSku()) {
+        $hasPpmSku = $lineItem['ProductId'] == $orderItem->getProduct()->getPpmMerchantSku();
+        $hasSku = $lineItem['ProductId'] == $orderItem->getProduct()->getSku();
+        if ($hasSku || $hasPpmSku) {
           $hasEmptySerial = empty($lineItem['SerialNumber']);
           $lineQuantity = $hasEmptySerial ? $lineItem['Quantity'] : 1;
           $qty += $lineQuantity;
-
           $detailData = array(
             'serial_number' => $lineItem['SerialNumber'],
             'lot_number' => $lineItem['LotNumber'],
             'quantity' => $lineQuantity,
             'ppm_merchant_sku' => $lineItem['ProductId']
           );
-
           $model = $objectManager->create('Ppm\Fulfillment\Model\PpmShipmentDetail');
           $model->setData($detailData);
           $model->_sales_shipment_track = $track;
@@ -49,6 +49,8 @@ class PpmOrderManagement {
           unset($hasEmptySerial);
           unset($lineQuantity);
         }
+        unset($hasPpmSku);
+        unset($hasSku);
       }
 
       if ($qty > 0) {
@@ -68,9 +70,15 @@ class PpmOrderManagement {
       $shipment->save();
       foreach ($details as $detail) {
         foreach ($shipmentItems as $itm) {
-          if ($itm->getOrderItem()->getProduct()->getPpmMerchantSku() == $detail->getPpmMerchantSku()) {
+          $product = $itm->getOrderItem()->getProduct();
+          $matchesPpmSku = $product->getPpmMerchantSku() == $detail->getPpmMerchantSku();
+          $matchesSku = $product->getSku() == $detail->getPpmMerchantSku();
+          if ($matchesSku || $matchesPpmSku) {
             $detail->setSalesShipmentItemId($itm->getEntityId());
           }
+          unset($matchesSku);
+          unset($matchesPpmSku);
+          unset($product);
         }
         $detail->setSalesShipmentTrackId($track->getEntityId());
         $detail->save();
