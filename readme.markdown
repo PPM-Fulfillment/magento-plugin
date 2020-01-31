@@ -22,7 +22,7 @@ The best way to install this plugin is through the Magento marketplace (PENDING)
 You can install using composer as well:
 
 ```
-$ composer require ppm/magento-fulfillment
+$ composer require ppm_fulfillment/magento-fulfillment
 ```
 
 Do this from the application root in your server shell. The continue by
